@@ -12,7 +12,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'http://localhost:5001/api/v2', // Replace 3000 with your backend port and /api with your base route
+      url: '${process.env.BASE_URL}/api/v2', // Replace 3000 with your backend port and /api with your base route
       description: 'Development server for V2',
     },
   ],
@@ -51,5 +51,6 @@ const options = {
 
 // Initialize swagger-jsdoc
 const swaggerSpec = swaggerJSDoc(options);
+
 
 module.exports = swaggerSpec;
