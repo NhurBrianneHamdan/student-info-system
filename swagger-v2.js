@@ -16,16 +16,6 @@ const swaggerDefinition = {
       description: 'Render Cloud server for V2',
     },
   ],
-  components: {
-    securitySchemes: {
-      // If your API uses JWT or other auth methods
-      bearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
-    },
-    // Define reusable schemas for request/response bodies
     schemas: {
       Student: {
         type: 'object',
@@ -54,6 +44,7 @@ const swaggerSpec = swaggerJSDoc(options);
 
 
 export default swaggerSpec;
+
 
 
 
