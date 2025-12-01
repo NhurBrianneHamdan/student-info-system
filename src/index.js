@@ -1,14 +1,17 @@
 import express from "express";
 import swaggerUi from "swagger-ui-express";
+import dotenv from "dotenv";
+import cors from "cors";
+import { connectDB } from "./config/db.js";
+
+dotenv.config();
+
+import swaggerSpec from "./swagger.js";
+
 import { createRequire } from 'module';
 import studentRoutes from "./routes/studentRoutes.js";
 import courseRoutes from "./routes/courseRoutes.js";
 import enrollmentRoutes from "./routes/enrollmentRoutes.js";
-import { connectDB } from "./config/db.js";
-import dotenv from "dotenv";
-import cors from "cors";
-
-dotenv.config();
 
 const require = createRequire(import.meta.url);
 const swaggerDocument = require("./swagger.json");
@@ -32,4 +35,5 @@ app.use("/api/v2/enrollment", enrollmentRoutes);
 app.listen(PORT, () => {
   console.log("Server is running on port", PORT)
 })
+
 
