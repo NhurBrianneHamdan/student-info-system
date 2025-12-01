@@ -1,6 +1,6 @@
 // swagger.js (create this file in your backend directory)
 
-const swaggerJSDoc = require('swagger-jsdoc');
+import swaggerJSDoc from 'swagger-jsdoc';
 
 const swaggerDefinition = {
   // Your API definition
@@ -54,6 +54,7 @@ const swaggerSpec = swaggerJSDoc(options);
 
 
 export default swaggerSpec;
+
 
 
 
