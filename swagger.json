@@ -1,0 +1,308 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "School Management API",
+    "version": "2.0.0",
+    "description": "API for managing students, courses, enrollment, and grades"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5001/api/v2"
+    }
+  ],
+  "paths": {
+    "/students": {
+      "get": {
+        "summary": "Get all students",
+        "responses": {
+          "200": {
+            "description": "List of students",
+            "content": {
+              "application/json": {
+                "example": [
+                  { "_id": "1", "name": "Larph Binua", "email": "larphs@gugol.com" }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new student",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "Larph Binua",
+                "studentId": "22-1234-567",
+                "email": "larphs@gugol.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Student created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "1",
+                  "name": "Larph Binua",
+                  "studentId": "22-1234-567",
+                  "email": "larphs@gugol.com"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/students/{id}": {
+      "get": {
+        "summary": "Get a student by studentID",
+        "parameters": [
+          { "in": "path", "name": "id", "schema": { "type": "string" }, "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student record",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "1",
+                  "name": "Larph Binua",
+                  "studentId": "22-1234-567",
+                  "email": "larphs@gugol.com"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a student",
+        "parameters": [
+          { "in": "path", "name": "id", "schema": { "type": "string" }, "required": true }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "Ralph Binuas",
+                "studentId": "22-1234-567",
+                "email": "binaliktad@gmail.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Student updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "1",
+                  "name": "Ralph Binuas",
+                  "studentId": "22-1234-567",
+                  "email": "binaliktad@gmail.com"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a student",
+        "parameters": [
+          { "in": "path", "name": "id", "schema": { "type": "string" }, "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student deleted",
+            "content": {
+              "application/json": {
+                "example": { "message": "Student deleted successfully" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/students/{id}/grades": {
+      "get": {
+        "summary": "Get student's complete grade list",
+        "parameters": [
+          { "in": "path", "name": "id", "schema": { "type": "string" }, "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student grade report",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "Larph Binua",
+                  "email": "larphs@gugol.com",
+                  "enrollments": [
+                    { "courseName": "IT Elective 3", "units": 3, "grade": "1.0" },
+                    { "courseName": "System Analysis and Design", "units": 3, "grade": "1.0" }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/courses": {
+      "get": {
+        "summary": "Get all courses",
+        "responses": {
+          "200": {
+            "description": "List of courses",
+            "content": {
+              "application/json": {
+                "example": [
+                  { "_id": "101", "title": "IT Elective 3", "units": 3 }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new course",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": { "courseCode": "CITEL13-18", "title": "IT Elective 3", "units": 3 }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Course created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "101",
+                  "courseCode": "CITEL13-18",
+                  "title": "IT Elective 3",
+                  "units": 3
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/courses/{id}": {
+      "put": {
+        "summary": "Update a course",
+        "parameters": [
+          { "in": "path", "name": "id", "schema": { "type": "string" }, "required": true }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": { "title": "IT Elective 4", "units": 4 }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Course updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "101",
+                  "title": "IT Elective 4",
+                  "units": 4
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a course",
+        "parameters": [
+          { "in": "path", "name": "id", "schema": { "type": "string" }, "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course deleted",
+            "content": {
+              "application/json": {
+                "example": { "message": "Course deleted successfully" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/enrollment/enroll": {
+      "post": {
+        "summary": "Enroll a student in a course",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": { "studentId": "22-1234-567", "courseCode": "CITEL13-18" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Enrollment added",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Student enrolled successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/enrollment/grade": {
+      "post": {
+        "summary": "Add or update a student's grade",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "studentId": "22-1234-567",
+                "courseCode": "CITEL13-18",
+                "grade": "1.0"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Grade updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Grade added successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
