@@ -6,7 +6,7 @@ import { connectDB } from "./config/db.js";
 
 dotenv.config();
 
-import swaggerSpec from "./swagger.js";
+import swaggerSpec from "./swagger-v2.js";
 
 import { createRequire } from 'module';
 import studentRoutes from "./routes/studentRoutes.js";
@@ -35,5 +35,6 @@ app.use("/api/v2/enrollment", enrollmentRoutes);
 app.listen(PORT, () => {
   console.log("Server is running on port", PORT)
 })
+
 
 
