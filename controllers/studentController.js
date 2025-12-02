@@ -6,6 +6,8 @@ export async function createStudent(req, res) {
     try {
         const {firstName, lastName, email} = req.body;
         // Use the imported StudentIdGenerator for the custom studentId
+        const name = `${firstName} ${lastName}`;
+        
         const newStudent = new Student({ name, studentId: StudentIdGenerator(), email});
         const savedStudent = await newStudent.save();
         res.status(201).json({ message: "New Student created", student: savedStudent});
