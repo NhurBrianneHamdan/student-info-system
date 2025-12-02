@@ -1,4 +1,4 @@
-import Course from '../models/course-information.js';
+import CourseInformation from '../models/course-information.js';
 
 // done http response
 // Inside ./controllers/courseController.js (createCourse)
