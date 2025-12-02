@@ -28,7 +28,11 @@ const courseEnrollmentSchema = new mongoose.Schema(
 // --- 2. Main Student Information Schema ---
 const studentInformationSchema = new mongoose.Schema(
     {
-        name: {
+        firstName: {
+            type: String,
+            required: true
+        },
+        lastName: {
             type: String,
             required: true
         },
