@@ -34,9 +34,10 @@
           "content": {
             "application/json": {
               "example": {
-                "name": "Larph Binua",
-                "studentId": "22-1234-567",
-                "email": "larphs@gugol.com"
+                "id": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "email": "user@example.com"
               }
             }
           }
@@ -306,4 +307,5 @@
     }
   }
 }
+
 
