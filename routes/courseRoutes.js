@@ -66,7 +66,11 @@ router.get("/", getAllCourse);
  *               title:
  *                 type: string
  *               code:
+ *                 type: string 
+ *               units:
  *                 type: string
+ *                 description: Course units
+ 
  *     responses:
  *       200:
  *         description: Course updated successfully.
