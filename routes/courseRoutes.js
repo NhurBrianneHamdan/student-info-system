@@ -99,6 +99,10 @@ router.put("/:id", updateCourse);
  *                 type: string
  *               code:
  *                 type: string
+ *               courseCode:
+ *                 type: string
+ *               units:
+ *                 type: number
  *     responses:
  *       201:
  *         description: Course successfully created.
