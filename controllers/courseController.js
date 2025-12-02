@@ -4,7 +4,7 @@ import Course from '../models/course-information.js';
 export async function createCourse(req, res) {
     try {
         const {courseCode, title, units} = req.body;
-        const newCourse = new Course({ courseCode, title, units});
+        const newCourse = new Course({ code, title});
         const savedCourse = await newCourse.save();
         res.status(201).json({message: "New Course created", savedCourse});
     } catch (error) {
