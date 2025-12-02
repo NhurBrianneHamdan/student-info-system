@@ -10,12 +10,6 @@ const swaggerDefinition = {
     version: '2.0.0', // Version of the API
     description: 'API documentation for the Student Information System backend.',
   },
-  servers: [
-    {
-      url: `${process.env.BASE_URL}/api/v2`, 
-      description: 'Render Cloud server for V2',
-    },
-  ],
   
   tags: [ 
         {
@@ -68,6 +62,7 @@ const swaggerSpec = swaggerJSDoc(options);
 
 
 export default swaggerSpec;
+
 
 
 
