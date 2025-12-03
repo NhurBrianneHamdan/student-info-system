@@ -7,8 +7,8 @@ export async function createStudent(req, res) {
         const {firstName, lastName, email} = req.body;
         // Use the imported StudentIdGenerator for the custom studentId
         const newStudent = new Student({ 
-            firstName, // Now correctly populating the required path
-            lastName,  // Now correctly populating the required path
+            firstName,
+            lastName,  
             studentId: StudentIdGenerator(), 
             email
         });
@@ -100,26 +100,22 @@ export async function getStudentGrades(req, res) {
         const targetStudentId = req.params.id;
 
         const pipeline = [
-            // 1. Match: Find the specific student document by custom studentId
+
             { $match: { studentId: targetStudentId } },
 
-            // 2. Unwind: Deconstruct the coursesEnrolled array
             { $unwind: "$coursesEnrolled" },
 
-            // 3. Lookup: Join with the CourseInformation collection
             {
                 $lookup: {
-                    from: "courseinformations", // The actual name of courses collection
-                    localField: "coursesEnrolled.courseCode", // Field in Student document
-                    foreignField: "courseCode",    // Field in Course document
+                    from: "courseinformations", 
+                    localField: "coursesEnrolled.courseCode", 
+                    foreignField: "courseCode",    
                     as: "courseDetails"
                 }
             },
 
-            // 4. Unwind: Deconstruct the courseDetails array
             { $unwind: { path: "$courseDetails", preserveNullAndEmptyArrays: true } },
 
-            // 5. Group: Reconstruct the student document and create the 'enrollments' array
             {
                 $group: {
                     _id: "$_id",
@@ -131,16 +127,13 @@ export async function getStudentGrades(req, res) {
                     enrollments: {
                         $push: {
                             courseName: "$courseDetails.title",
-                            // Use units from courseDetails (Assuming it's named 'units' or 'credits' in the Course schema)
                             units: "$courseDetails.units", 
-                            // Get the first element of the grades array (assuming one grade per enrollment)
                             grade: { $arrayElemAt: ["$coursesEnrolled.grades", 0] } 
                         }
                     }
                 }
             },
 
-            // 6. Project: Final shaping and field renaming for the desired output
             {
                 $project: {
                     _id: 0,
