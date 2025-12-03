@@ -54,13 +54,13 @@ export async function getStudent(req, res) {
 // done http response
 export async function updateStudent(req, res) {
     try {
-        const { name, email } = req.body;
+        const { firstName, lastName email } = req.body;
         const targetStudentId = req.params.id;
         
         // Update by custom studentId
         const updatedStudent = await Student.findOneAndUpdate(
             { studentId: targetStudentId },
-            { name, email},
+            { firstName, lastName, email},
             { new: true, runValidators: true }
         );
 
@@ -123,7 +123,8 @@ export async function getStudentGrades(req, res) {
             {
                 $group: {
                     _id: "$_id",
-                    name: { $first: "$name" },
+                    firstName: { $first: "$firstName" },
+                    lastName: { $first: "$lastName" },
                     email: { $first: "$email" },
                     createdAt: { $first: "$createdAt" },
 
@@ -144,7 +145,8 @@ export async function getStudentGrades(req, res) {
                 $project: {
                     _id: 0,
                     id: "$_id",
-                    name: 1,
+                    firstName: 1,
+                    lastName: 1,
                     email: 1,
                     createdAt: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
                     enrollments: 1
@@ -166,7 +168,8 @@ export async function getStudentGrades(req, res) {
                 message: "Student found, but has no enrollments or grades.",
                 studentData: {
                     id: studentExists._id,
-                    name: studentExists.name,
+                    firstName: studentExists.firstName,
+                    lastName: studentExists.lastName,
                     email: studentExists.email,
                     createdAt: studentExists.createdAt.toISOString().split('T')[0],
                     enrollments: []
