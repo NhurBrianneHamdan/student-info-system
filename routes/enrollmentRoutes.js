@@ -29,7 +29,7 @@ const router = express.Router();
  *               studentId:
  *                 type: string
  *                 description: ID of the student to enroll
- *               courseId:
+ *               courseCode:
  *                 type: string
  *                 description: ID of the course
  *     responses:
@@ -60,7 +60,7 @@ router.post('/enroll', enrollStudent);
  *               studentId:
  *                 type: string
  *                 description: ID of the student
- *               courseId:
+ *               courseCode:
  *                 type: string
  *                 description: ID of the course
  *               grade:
