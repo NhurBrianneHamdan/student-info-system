@@ -65,7 +65,7 @@ router.get("/", getAllCourse);
  *             properties:
  *               title:
  *                 type: string
- *               code:
+ *               courseCode:
  *                 type: string 
  *               units:
  *                 type: string
@@ -96,8 +96,6 @@ router.put("/:id", updateCourse);
  *               - code
  *             properties:
  *               title:
- *                 type: string
- *               code:
  *                 type: string
  *               courseCode:
  *                 type: string
