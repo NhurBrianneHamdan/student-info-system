@@ -4,7 +4,7 @@ const courseInformationSchema = new mongoose.Schema(
   {
     courseCode: { type: String, required: true },
     title: { type: String, required: true },
-    units: { type: Number, required: true },
+    units: { type: String, required: true },
   },
   { timestamps: true }
 );
